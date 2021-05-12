@@ -9,33 +9,36 @@ namespace AgendaTelefonica.Config
 {
     class Conexao
     {
-        SqlConnection conexao = new SqlConnection();
+        
 
         public Conexao()
         {
-
-            conexao.ConnectionString = @"Data Source=localhost\sqlexpress;Initial Catalog=ListaContatos;User ID=sa;Password=44554455";
-
+            
         }
 
         //Metodo para conexão
-        public SqlConnection conectar()
+        protected static SqlConnection conectar()
         {
-
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=localhost\sqlexpress;Initial Catalog=ListaContatos;User ID=sa;Password=nvamaster123";
             if (conexao.State == System.Data.ConnectionState.Closed)
             {
                 conexao.Open();
+                System.Diagnostics.Debug.WriteLine("Conexão aberta");
             }
 
             return conexao;
         }
 
         //Metodo para desconectar
-        public void desconectar()
+        protected static void desconectar()
         {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=localhost\sqlexpress;Initial Catalog=ListaContatos;User ID=sa;Password=nvamaster123";
             if (conexao.State == System.Data.ConnectionState.Open)
             {
                 conexao.Close();
+                System.Diagnostics.Debug.WriteLine("Conexão fechada");
             }
         }
 

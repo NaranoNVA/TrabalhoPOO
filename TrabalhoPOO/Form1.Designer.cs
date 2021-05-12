@@ -38,9 +38,9 @@ namespace TrabalhoPOO
             this.label3 = new System.Windows.Forms.Label();
             this.txt_celular = new System.Windows.Forms.TextBox();
             this.dgv_contatos = new System.Windows.Forms.DataGridView();
-            this.txt_return = new System.Windows.Forms.Label();
-            this.listaContatosDataSet = new TrabalhoPOO.ListaContatosDataSet();
             this.contatosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.listaContatosDataSet = new TrabalhoPOO.ListaContatosDataSet();
+            this.txt_return = new System.Windows.Forms.Label();
             this.contatosTableAdapter = new TrabalhoPOO.ListaContatosDataSetTableAdapters.contatosTableAdapter();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +49,8 @@ namespace TrabalhoPOO
             this.btn_atualizar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btn_remover = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_contatos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaContatosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contatosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaContatosDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_cadastrar
@@ -136,6 +136,17 @@ namespace TrabalhoPOO
             this.dgv_contatos.Name = "dgv_contatos";
             this.dgv_contatos.Size = new System.Drawing.Size(894, 350);
             this.dgv_contatos.TabIndex = 100;
+            this.dgv_contatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_contatos_CellContentClick);
+            // 
+            // contatosBindingSource
+            // 
+            this.contatosBindingSource.DataMember = "contatos";
+            this.contatosBindingSource.DataSource = this.listaContatosDataSet;
+            // 
+            // listaContatosDataSet
+            // 
+            this.listaContatosDataSet.DataSetName = "ListaContatosDataSet";
+            this.listaContatosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txt_return
             // 
@@ -147,16 +158,6 @@ namespace TrabalhoPOO
             this.txt_return.Name = "txt_return";
             this.txt_return.Size = new System.Drawing.Size(0, 19);
             this.txt_return.TabIndex = 101;
-            // 
-            // listaContatosDataSet
-            // 
-            this.listaContatosDataSet.DataSetName = "ListaContatosDataSet";
-            this.listaContatosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // contatosBindingSource
-            // 
-            this.contatosBindingSource.DataMember = "contatos";
-            this.contatosBindingSource.DataSource = this.listaContatosDataSet;
             // 
             // contatosTableAdapter
             // 
@@ -232,8 +233,8 @@ namespace TrabalhoPOO
             this.Text = "Agenda Telefonica";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_contatos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaContatosDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contatosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaContatosDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
