@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace AgendaTelefonica.Config
 {
-    class Conexao
+    public class Conexao
     {
         
 

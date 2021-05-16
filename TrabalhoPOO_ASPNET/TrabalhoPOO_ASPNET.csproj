@@ -67,9 +67,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdicionarContatos.aspx" />
+    <Content Include="AlterarDados.aspx" />
+    <Content Include="Contatos.aspx" />
+    <Content Include="css\style.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="js\JsMaterial.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdicionarContatos.aspx.cs">
+      <DependentUpon>AdicionarContatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdicionarContatos.aspx.designer.cs">
+      <DependentUpon>AdicionarContatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlterarDados.aspx.cs">
+      <DependentUpon>AlterarDados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlterarDados.aspx.designer.cs">
+      <DependentUpon>AlterarDados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contatos.aspx.cs">
+      <DependentUpon>Contatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contatos.aspx.designer.cs">
+      <DependentUpon>Contatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.Master.cs">
       <DependentUpon>Index.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +122,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\POO\POO.csproj">
+      <Project>{3e920087-781f-483d-b52f-383cb74e9f5e}</Project>
+      <Name>POO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

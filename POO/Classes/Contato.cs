@@ -9,52 +9,71 @@ using AgendaTelefonica.Config;
 
 namespace TrabalhoPOO.Classes
 {
-    class Contato : Conexao
+    [Serializable]
+    public class Contato : Conexao
     {
-        int id;
-        string nome, telefone, celular;
+        
+        public int? id { get; set; }
+        public string nome { get; set; }
+        public string telefone { get; set; }
+        public string celular { get; set; }
 
-        public Contato(string nome, string telefone, string celular, int id = -1)
+
+        public Contato()
         {
-            this.id = id;
-            this.nome = nome;
-            this.telefone = telefone;
-            this.celular = celular;
+           //this.id = id;
+           //this.nome = nome;
+           //this.telefone = telefone;
+           //this.celular = celular;
         }
 
-        public static DataTable listarContatos()
+        public static List<Contato> listarContatos()
         {
-            SqlCommand query = new SqlCommand();
-            query.CommandText = "Select id, nome, telefone, celular from contatos";
-
-            try
+            List<Contato> contatos = new List<Contato>();
+            using (IDbConnection conexao = conectar()) 
             {
-                query.Connection = conectar();
-                query.ExecuteNonQuery();
+                using (IDbCommand cmd = conexao.CreateCommand())
+                {
+                    //Testar com Get e SET AMANHA
+                    try
+                    {
+                        cmd.CommandText = "Select id, nome, telefone, celular from contatos";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandTimeout = 60000;
 
-                //Cria DataTable
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = query;
-                DataTable contatos = new DataTable();
-                adapter.Fill(contatos);
+                        IDataReader leitor = cmd.ExecuteReader();
 
-                desconectar();
+                        while (leitor.Read())
+                        {
+                            Contato contato = new Contato();
+                            contato.nome = leitor["nome"].ToString();
+                            contato.celular = leitor["celular"].ToString();
+                            contato.telefone = leitor["telefone"].ToString();
+                            contato.id = Convert.ToInt32(leitor["id"].ToString());
+                                
+                            contatos.Add(contato);
+                        }
 
-                return contatos;
+                        leitor.Close();
+
+                        return contatos;
+                    }
+                    catch (Exception error)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Erro: " + error.ToString());
+                        return contatos;
+                    }
+                    finally
+                    {
+                        conexao.Close();
+                    }
+                }
             }
-            catch (SqlException error)
-            {
-                Console.WriteLine("Erro: " + error.ToString());
-                desconectar();
-            }
-
-
-            return null;
         }
 
         public string atualizarContato()
         {
-            Conexao conexao = new Conexao();
+            /*Conexao conexao = new Conexao();
 
             SqlCommand query = new SqlCommand();
             query.CommandText = "UPDATE contatos SET nome = @nome, telefone = @telefone, celular = @celular where id = @id";
@@ -76,13 +95,13 @@ namespace TrabalhoPOO.Classes
             {
                 desconectar();
                 return "Erro: " + error.ToString();
-            }
-
+            }*/
+            return "teasda";
         }
 
         public string removerContato()
         {
-            Conexao conexao = new Conexao();
+            /*Conexao conexao = new Conexao();
 
             SqlCommand query = new SqlCommand();
 
@@ -102,13 +121,13 @@ namespace TrabalhoPOO.Classes
             {
                 desconectar();
                 return "Erro: " + error.ToString();
-            }
-
+            }*/
+            return "43211";
         }
 
         public string cadastrarContato()
         {
-            Conexao conexao = new Conexao();
+            /*Conexao conexao = new Conexao();
 
             SqlCommand query = new SqlCommand();
             query.CommandText = "INSERT INTO contatos (nome, telefone, celular) values (@nome, @telefone, @celular)";
@@ -129,9 +148,8 @@ namespace TrabalhoPOO.Classes
             {
                 desconectar();
                 return "Erro: " + error.ToString();
-            }
-
+            }*/
+            return "21313";
         }
-
     }
 }
