@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Contato.cs" />
+    <Compile Include="Classes\Mensagem.cs" />
     <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Config\Conexao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
