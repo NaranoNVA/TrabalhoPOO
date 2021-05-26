@@ -14,16 +14,5 @@ namespace TrabalhoPOO_ASPNET
         {
             
         }
-
-        public void tornarAbaAtiva(Control itemMenu)
-        {
-            HtmlGenericControl ativaMenu = new HtmlGenericControl("span");
-            HtmlGenericControl ativaMenu2 = new HtmlGenericControl("span");
-            ativaMenu.Attributes.Add("class", "mdc-tab-indicator mdc-tab-indicator--active");
-            ativaMenu2.Attributes.Add("class", "mdc-tab-indicator__content mdc-tab-indicator__content--underline");
-            ativaMenu.Controls.Add(ativaMenu2);
-
-            itemMenu.Controls.Add(ativaMenu);
-        }
     }
 }

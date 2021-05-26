@@ -33,15 +33,6 @@ namespace TrabalhoPOO_ASPNET
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Controle menuAdicionarContatos.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuAdicionarContatos;
-
-        /// <summary>
         /// Controle menuContatos.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace TrabalhoPOO_ASPNET
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor menuContatos;
+
+        /// <summary>
+        /// Controle menuAdicionarContatos.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuAdicionarContatos;
 
         /// <summary>
         /// Controle menuAlterar.

@@ -1,22 +1,4 @@
-﻿/*Material Components*/
-
-/*Tab*/
-@use "@material/tab-bar/mdc-tab-bar";
-@use "@material/tab-scroller/mdc-tab-scroller";
-@use "@material/tab-indicator/mdc-tab-indicator";
-@use "@material/tab/mdc-tab";
-
-/*Data Table*/
-@use "@material/checkbox";
-@use "@material/icon-button";
-@use "@material/data-table/data-table";
-
-@include checkbox.core-styles;
-@include icon-button.core-styles;
-@include data-table.core-styles;
-@include data-table.theme-baseline;
-
-:root {
+﻿:root {
     --mdc-theme-primary: #ffffff;
     --mdc-theme-secondary: #b3154b;
     --mdc-theme-surface: #303030; /*Cor da Tabela*/
@@ -28,21 +10,4 @@ body {
 }
 
 main {
-    padding: 10px;
-    margin: auto;
-    align-content: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-}
-
-.mdc-tab-bar {
-    background-color: #e91e63;
-}
-
-.mdc-data-table__header-cell { /*Cabeçalho Tabela*/
-    color: #fff;
-}
-
-.mdc-data-table__pagination-total, .mdc-data-table__pagination-rows-per-page-label, .mdc-data-table__cell { /*Corpo Tabela*/
-    color: #fff;
 }

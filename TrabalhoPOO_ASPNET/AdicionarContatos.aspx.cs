@@ -12,14 +12,12 @@ namespace TrabalhoPOO_ASPNET
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Atualiza Menu
-            ((Index)Master).tornarAbaAtiva(((Index)Master).FindControl("menuAdicionarContatos"));
-            listarUsuarios();
+           // listarUsuarios();
         }
 
         private void listarUsuarios()
         {
-            List<Contato> contatos = new List<Contato>();
+           /* List<Contato> contatos = new List<Contato>();
             for (int i = 0; i <= 5; i++)
             {
                 Contato contato = new Contato();
@@ -30,10 +28,9 @@ namespace TrabalhoPOO_ASPNET
                 contatos.Add(contato);
             }
 
-
             contatos = TrabalhoPOO.Classes.Contato.listarContatos();
             gdvContatos.DataSource = contatos;
-            gdvContatos.DataBind();
+            gdvContatos.DataBind();*/
         }
     }
 }

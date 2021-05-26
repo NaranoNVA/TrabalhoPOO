@@ -9,7 +9,6 @@ using AgendaTelefonica.Config;
 
 namespace TrabalhoPOO.Classes
 {
-    [Serializable]
     public class Contato : Conexao
     {
         
@@ -17,51 +16,103 @@ namespace TrabalhoPOO.Classes
         public string nome { get; set; }
         public string telefone { get; set; }
         public string celular { get; set; }
+        public int idUsuario { get; set; }
 
+        public Contato() {
 
-        public Contato()
-        {
-           //this.id = id;
-           //this.nome = nome;
-           //this.telefone = telefone;
-           //this.celular = celular;
         }
 
-        public static List<Contato> listarContatos()
-        {
-            List<Contato> contatos = new List<Contato>();
-            using (IDbConnection conexao = conectar()) 
+        public Contato(int? id, string nome, string telefone, string celular, int idUsuario) {
+            this.id = id;
+            this.nome = nome;
+            this.telefone = telefone;
+            this.celular = celular;
+            this.idUsuario = idUsuario;
+        }
+
+        protected string atualizarContato() {
+            using (IDbConnection conexao = conectar())
             {
                 using (IDbCommand cmd = conexao.CreateCommand())
                 {
-                    //Testar com Get e SET AMANHA
-                    try
-                    {
-                        cmd.CommandText = "Select id, nome, telefone, celular from contatos";
+                    try {
+                        cmd.CommandText = "UPDATE contatos SET nome = " + this.nome + ", telefone = " + this.telefone + ", celular = " + this.celular + " where id = " + this.id;
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandTimeout = 60000;
 
                         IDataReader leitor = cmd.ExecuteReader();
 
-                        while (leitor.Read())
-                        {
-                            Contato contato = new Contato();
-                            contato.nome = leitor["nome"].ToString();
-                            contato.celular = leitor["celular"].ToString();
-                            contato.telefone = leitor["telefone"].ToString();
-                            contato.id = Convert.ToInt32(leitor["id"].ToString());
-                                
-                            contatos.Add(contato);
-                        }
+                        leitor.Close();
+
+                        conexao.Open();
+                        cmd.ExecuteNonQuery();
+                        return "Atualizado com sucesso!";
+                    }
+                    catch (Exception error) {
+                        System.Diagnostics.Debug.WriteLine("Erro: " + error.ToString());
+                        return "Falha ao atualizar!";
+                    }
+                    finally {
+                        conexao.Close();
+                    }
+                }
+            }
+        }
+
+        protected string removerContato() {
+            using (IDbConnection conexao = conectar())
+            {
+                using (IDbCommand cmd = conexao.CreateCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = "DELETE  from contatos WHERE id = " + this.id;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandTimeout = 60000;
+
+                        IDataReader leitor = cmd.ExecuteReader();
 
                         leitor.Close();
 
-                        return contatos;
+                        conexao.Open();
+                        cmd.ExecuteNonQuery();
+                        return "Deletado com sucesso!";
                     }
                     catch (Exception error)
                     {
                         System.Diagnostics.Debug.WriteLine("Erro: " + error.ToString());
-                        return contatos;
+                        return "Falha ao deletar!";
+                    }
+                    finally
+                    {
+                        conexao.Close();
+                    }
+                }
+            }
+        }
+        protected string cadastrarContato() {
+            using (IDbConnection conexao = conectar())
+            {
+                using (IDbCommand cmd = conexao.CreateCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = "INSERT INTO contatos (nome, telefone, celular, id_usuario) values ("+this.nome+", "+this.telefone+", "+this.celular+", "+this.idUsuario+")";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandTimeout = 60000;
+
+                        IDataReader leitor = cmd.ExecuteReader();
+
+                        leitor.Close();
+
+                        conexao.Open();
+                        cmd.ExecuteNonQuery();
+                        return "Inserido com sucesso!";
+                    }
+                    catch (Exception error)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Erro: " + error.ToString());
+                        return "Falha ao inserir!";
                     }
                     finally
                     {
@@ -71,85 +122,5 @@ namespace TrabalhoPOO.Classes
             }
         }
 
-        public string atualizarContato()
-        {
-            /*Conexao conexao = new Conexao();
-
-            SqlCommand query = new SqlCommand();
-            query.CommandText = "UPDATE contatos SET nome = @nome, telefone = @telefone, celular = @celular where id = @id";
-            query.Parameters.AddWithValue("@nome", this.nome);
-            query.Parameters.AddWithValue("@telefone", this.telefone);
-            query.Parameters.AddWithValue("@celular", this.celular);
-            query.Parameters.AddWithValue("@id", this.id);
-
-            try
-            {
-                query.Connection = conectar();
-                query.ExecuteNonQuery();
-
-                desconectar();
-
-                return "Contato atualizado com sucesso!";
-            }
-            catch (SqlException error)
-            {
-                desconectar();
-                return "Erro: " + error.ToString();
-            }*/
-            return "teasda";
-        }
-
-        public string removerContato()
-        {
-            /*Conexao conexao = new Conexao();
-
-            SqlCommand query = new SqlCommand();
-
-            query.CommandText = "DELETE  from contatos WHERE id = @id";
-            query.Parameters.AddWithValue("@id", this.id);
-
-            try
-            {
-                query.Connection = conectar();
-                query.ExecuteNonQuery();
-
-                desconectar();
-
-                return "Contato excluido com sucesso!";
-            }
-            catch (SqlException error)
-            {
-                desconectar();
-                return "Erro: " + error.ToString();
-            }*/
-            return "43211";
-        }
-
-        public string cadastrarContato()
-        {
-            /*Conexao conexao = new Conexao();
-
-            SqlCommand query = new SqlCommand();
-            query.CommandText = "INSERT INTO contatos (nome, telefone, celular) values (@nome, @telefone, @celular)";
-            query.Parameters.AddWithValue("@nome", this.nome);
-            query.Parameters.AddWithValue("@telefone", this.telefone);
-            query.Parameters.AddWithValue("@celular", this.celular);
-
-            try
-            {
-                query.Connection = conectar();
-                query.ExecuteNonQuery();
-
-                desconectar();
-
-                return "Contato cadastrado com sucesso!";
-            }
-            catch (SqlException error)
-            {
-                desconectar();
-                return "Erro: " + error.ToString();
-            }*/
-            return "21313";
-        }
     }
 }

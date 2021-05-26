@@ -11,8 +11,7 @@ namespace TrabalhoPOO_ASPNET
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Atualiza Menu
-            ((Index)Master).tornarAbaAtiva(((Index)Master).FindControl("menuAlterar"));
+            
         }
     }
 }
